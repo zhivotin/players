@@ -34,7 +34,7 @@ public class PlayerController {
         return playerService.findAll();
     }
 
-    @GetMapping("/page")
+    @GetMapping(PAGE_URL)
     public PagedModel<EntityModel<PlayerDTO>> getAllPageable(@RequestParam(name = "page") Integer pageNumber,
                                                              @RequestParam(name = "size") Integer pageSize) {
 

@@ -49,7 +49,7 @@ public class PlayerService implements IPlayerService {
     @Override
     public PlayerDTO findById(String playerId) {
         Player player = playerDAO.findById(playerId)
-                .orElseThrow(() -> new EntityNotFoundException(ERROR_MSG_FIND_BY_ID + playerId));
+                .orElseThrow(() -> new EntityNotFoundException(String.format(ERROR_MSG_FIND_BY_ID, playerId)));
         return playerMapper.toDto(player);
     }
 }

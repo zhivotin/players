@@ -9,7 +9,6 @@ import com.intuit.players.repository.PlayerDAO;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -25,12 +24,18 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.Mockito.any;
+import static org.mockito.Mockito.when;
 
 @SpringBootTest
 @ActiveProfiles("test")
 public class PlayerServiceTest {
+    private final static String PLAYER_ID = "1";
+    private final static Integer PAGE_NUMBER = 0;
+    private final static Integer PAGE_SIZE = 100;
+
     private static Player entity;
     private static PlayerDTO dto;
 
@@ -67,9 +72,9 @@ public class PlayerServiceTest {
     @Test
     public void testFindAllPageable() {
         when(playerDAO.findAll(any(Pageable.class)))
-                .thenReturn(new PageImpl<>(Collections.singletonList(entity), PageRequest.of(0, 100), 1L));
+                .thenReturn(new PageImpl<>(Collections.singletonList(entity), PageRequest.of(PAGE_NUMBER, PAGE_SIZE), 1L));
 
-        Page<PlayerDTO> players = playerService.findAllPageable(0, 100);
+        Page<PlayerDTO> players = playerService.findAllPageable(PAGE_NUMBER, PAGE_SIZE);
         assertEquals(1, players.getContent().size());
         assertEquals(1L, players.getTotalElements());
         assertEquals(1, players.getTotalPages());
@@ -79,22 +84,22 @@ public class PlayerServiceTest {
     @Test
     public void testFindAllPageable_emptyResult() {
         when(playerDAO.findAll(any(Pageable.class)))
-                .thenReturn(new PageImpl<>(Collections.emptyList(), PageRequest.of(0, 100), 0L));
+                .thenReturn(new PageImpl<>(Collections.emptyList(), PageRequest.of(PAGE_NUMBER, PAGE_SIZE), 0L));
 
-        assertThrows(EntityNotFoundException.class, () -> playerService.findAllPageable(0, 100));
+        assertThrows(EntityNotFoundException.class, () -> playerService.findAllPageable(PAGE_NUMBER, PAGE_SIZE));
     }
 
     @Test
     public void testFindById() {
-        when(playerDAO.findById("1")).thenReturn(Optional.ofNullable(entity));
+        when(playerDAO.findById(PLAYER_ID)).thenReturn(Optional.ofNullable(entity));
 
-        Assertions.assertThat(playerService.findById("1")).usingRecursiveComparison().isEqualTo(dto);
+        Assertions.assertThat(playerService.findById(PLAYER_ID)).usingRecursiveComparison().isEqualTo(dto);
     }
 
     @Test
     public void testFindById_emptyResult() {
-        when(playerDAO.findById("1")).thenReturn(Optional.empty());
+        when(playerDAO.findById(PLAYER_ID)).thenReturn(Optional.empty());
 
-        assertThrows(EntityNotFoundException.class, () -> playerService.findById("1"));
+        assertThrows(EntityNotFoundException.class, () -> playerService.findById(PLAYER_ID));
     }
 }
