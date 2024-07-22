@@ -21,11 +21,11 @@ public class Player {
     @Column(name = "birthday")
     private Integer birthDay;
     @Column(name = "birthcountry")
-    private String birthCountry; // TODO put in other table
+    private String birthCountry;
     @Column(name = "birthstate")
-    private String birthState; // TODO put in other table
+    private String birthState;
     @Column(name = "birthcity")
-    private String birthCity; // TODO put in other table
+    private String birthCity;
     @Column(name = "deathyear")
     private Integer deathYear;
     @Column(name = "deathmonth")
@@ -33,11 +33,11 @@ public class Player {
     @Column(name = "deathday")
     private Integer deathDay;
     @Column(name = "deathcountry")
-    private String deathCountry; // TODO put in other table
+    private String deathCountry;
     @Column(name = "deathstate")
-    private String deathState; // TODO put in other table
+    private String deathState;
     @Column(name = "deathcity")
-    private String deathCity; // TODO put in other table
+    private String deathCity;
     @Column(name = "namefirst")
     private String nameFirst;
     @Column(name = "namelast")

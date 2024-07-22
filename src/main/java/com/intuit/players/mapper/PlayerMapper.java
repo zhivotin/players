@@ -8,32 +8,32 @@ import org.springframework.stereotype.Component;
 public class PlayerMapper {
 
     public PlayerDTO toDto(Player player) {
-        return new PlayerDTO.Builder()
-                .playerID(player.getPlayerID())
-                .birthYear(player.getBirthYear())
-                .birthMonth(player.getBirthMonth())
-                .birthDay(player.getBirthDay())
-                .birthCountry(player.getBirthCountry())
-                .birthState(player.getBirthState())
-                .birthCity(player.getBirthCity())
-                .deathYear(player.getDeathYear())
-                .deathMonth(player.getDeathMonth())
-                .deathDay(player.getDeathDay())
-                .deathCountry(player.getDeathCountry())
-                .deathState(player.getDeathState())
-                .deathCity(player.getDeathCity())
-                .nameFirst(player.getNameFirst())
-                .nameLast(player.getNameLast())
-                .nameGiven(player.getNameGiven())
-                .weight(player.getWeight())
-                .height(player.getHeight())
-                .batsSide(player.getBatsSide())
-                .throwsSide(player.getThrowsSide())
-                .debut(player.getDebut())
-                .finalGame(player.getFinalGame())
-                .retroID(player.getRetroID())
-                .bbrefID(player.getBbrefID())
-                .build();
+        PlayerDTO playerDTO = new PlayerDTO();
+        playerDTO.setPlayerID(player.getPlayerID());
+        playerDTO.setBirthYear(player.getBirthYear());
+        playerDTO.setBirthMonth(player.getBirthMonth());
+        playerDTO.setBirthDay(player.getBirthDay());
+        playerDTO.setBirthCountry(player.getBirthCountry());
+        playerDTO.setBirthState(player.getBirthState());
+        playerDTO.setBirthCity(player.getBirthCity());
+        playerDTO.setDeathYear(player.getDeathYear());
+        playerDTO.setDeathMonth(player.getDeathMonth());
+        playerDTO.setDeathDay(player.getDeathDay());
+        playerDTO.setDeathCountry(player.getDeathCountry());
+        playerDTO.setDeathState(player.getDeathState());
+        playerDTO.setDeathCity(player.getDeathCity());
+        playerDTO.setNameFirst(player.getNameFirst());
+        playerDTO.setNameLast(player.getNameLast());
+        playerDTO.setNameGiven(player.getNameGiven());
+        playerDTO.setWeight(player.getWeight());
+        playerDTO.setHeight(player.getHeight());
+        playerDTO.setBatsSide(player.getBatsSide());
+        playerDTO.setThrowsSide(player.getThrowsSide());
+        playerDTO.setDebut(player.getDebut());
+        playerDTO.setFinalGame(player.getFinalGame());
+        playerDTO.setRetroID(player.getRetroID());
+        playerDTO.setBbrefID(player.getBbrefID());
+        return playerDTO;
     }
 
 }

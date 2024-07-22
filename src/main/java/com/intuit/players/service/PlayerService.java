@@ -1,6 +1,5 @@
 package com.intuit.players.service;
 
-import com.intuit.players.constants.Constants;
 import com.intuit.players.dto.PlayerDTO;
 import com.intuit.players.exception.EntityNotFoundException;
 import com.intuit.players.mapper.PlayerMapper;

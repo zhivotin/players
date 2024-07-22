@@ -48,7 +48,7 @@ public class PlayerControllerTest {
     @Test
     public void testGetAll() throws Exception {
         Mockito.when(playerService.findAll())
-                .thenReturn(new ArrayList<>(Collections.singletonList(new PlayerDTO.Builder().build())));
+                .thenReturn(new ArrayList<>(Collections.singletonList(new PlayerDTO())));
 
         mockMvc.perform(MockMvcRequestBuilders.get(BASE_URL))
                 .andExpect(MockMvcResultMatchers.status().isOk())
@@ -78,7 +78,7 @@ public class PlayerControllerTest {
                         .param("size", "100"))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("_embedded.playerDTOList").isArray())
-                .andExpect(MockMvcResultMatchers.jsonPath("_embedded.playerDTOList").value(mockPage.getNumberOfElements()))
+                .andExpect(MockMvcResultMatchers.jsonPath("_embedded.playerDTOList.length()").value(mockPage.getNumberOfElements()))
         ;
     }
 
@@ -98,7 +98,7 @@ public class PlayerControllerTest {
 
     @Test
     public void testGetById() throws Exception {
-        Mockito.when(playerService.findById("1")).thenReturn(new PlayerDTO.Builder().build());
+        Mockito.when(playerService.findById("1")).thenReturn(new PlayerDTO());
 
         mockMvc.perform(MockMvcRequestBuilders.get(BASE_URL + "/1"))
                 .andExpect(MockMvcResultMatchers.status().isOk())

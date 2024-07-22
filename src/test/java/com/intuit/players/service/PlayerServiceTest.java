@@ -81,7 +81,7 @@ public class PlayerServiceTest {
         when(playerDAO.findAll(any(Pageable.class)))
                 .thenReturn(new PageImpl<>(Collections.emptyList(), PageRequest.of(0, 100), 0L));
 
-        assertThrows(EntityNotFoundException.class, () -> playerService.findAll());
+        assertThrows(EntityNotFoundException.class, () -> playerService.findAllPageable(0, 100));
     }
 
     @Test
