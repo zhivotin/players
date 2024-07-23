@@ -6,5 +6,5 @@ To build the project use:
 **mvn clean install**
 
 ## Run
-To run your IDE or Maven command:     
+To run use your IDE or Maven command:     
 **mvn spring-boot:run**
